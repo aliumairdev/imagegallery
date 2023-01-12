@@ -1,0 +1,24 @@
+
+<div class="text-center">
+	<h1> Gallery </h1>
+	<p> <%= link_to 'back', url_for(:back), class: "back-btn" %> </p>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md-12" id="js-show-attachment">
+  </div>
+</div>
+  <hr>
+<div class="row">
+	<% @attachments.each do |attachment| %>
+        <div class="m-1">
+        	<div class="image-text">
+				<%= image_tag(attachment.image.thumb.url, alt: "image") %>
+				<div class="centered">
+					<%= link_to "Show" , attachment, class: "btn-image", remote: true %>	
+				</div>
+			</div>
+	    </div>  
+    <% end %>
+</div>
+

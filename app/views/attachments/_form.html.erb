@@ -1,0 +1,69 @@
+
+<%= form_for(attachment) do |f| %>
+
+	<%= render partial: 'errors', locals: { attachment: attachment } %>
+
+	<div class="form-group">
+		<strong><%= f.label :title %></strong>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :description %></strong>
+	 	<%= f.text_area :description, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :image_type %></strong>
+	 	<%= f.text_field :image_type, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :place %></strong>
+	 	<%= f.text_field :place, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :created_by %></strong>
+	 	<%= f.text_field :created_by, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :price %></strong>
+	 	<%= f.text_field :price, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :Add_Amount %></strong>
+	 	<%= f.text_field :amount, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	 	<strong><%= f.label :image %></strong>
+	 	<div class="form-group"> 
+	 		<%= f.file_field :image %>
+	 		<%= f.hidden_field :image_cache %>
+	 		<br><br>
+	 		<strong><%= label_tag "Enter Url of Image" %></strong>
+	 		<%= f.text_field :remote_image_url, class: "form-control" %>
+	 	</div>
+	 	<div class="form-group">
+	 		<% if attachment.image? %>
+	 			<%= image_tag attachment.image.thumb.url %>
+	 			<div>
+	 				<%= label_tag ":remove_image" do %>
+	 					Remove Image
+	 					<%= f.check_box :remove_image %>
+	 				<% end %>
+	 			</div>
+	 		<% end %>
+		</div>
+	</div>
+
+	<div>
+		<%= f.submit class: "btn btn-primary"%>
+	</div>
+
+<% end %>
+
+

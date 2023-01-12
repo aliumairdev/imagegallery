@@ -1,0 +1,12 @@
+
+<div class="container">
+	<h1> Roles </h1>
+	<hr>
+	<div class="row">
+		<% @roles.each do |role| %>
+			<div class="col-md-2"> <strong> <%= role.name %> </strong> </div>
+		<% end %>
+	</div>
+	<br>
+	<%= link_to 'add role', new_role_path, class: 'btn btn-primary' %>
+</div>

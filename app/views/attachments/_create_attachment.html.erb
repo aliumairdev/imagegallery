@@ -1,0 +1,43 @@
+
+<div class="form-group">
+	<strong><%= f.label :title %></strong>
+	<%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
+ 	<strong><%= f.label :description %></strong>
+ 	<%= f.text_area :description, class: "form-control" %>
+</div>
+
+<div class="form-group">
+ 	<strong><%= f.label :image_type %></strong>
+ 	<%= f.text_field :image_type, class: "form-control" %>
+</div>
+
+<div class="form-group">
+ 	<strong><%= f.label :place %></strong>
+ 	<%= f.text_field :place, class: "form-control" %>
+</div>
+
+<div class="form-group">
+ 	<strong><%= f.label :created_by %></strong>
+ 	<%= f.text_field :created_by, class: "form-control" %>
+</div>
+
+<div class="form-group">
+ 	<strong><%= f.label :price %></strong>
+ 	<%= f.text_field :price, class: "form-control" %>
+</div>
+<div class="form-group">
+ 	<strong><%= f.label :amount %></strong>
+ 	<%= f.text_field :amount, class: "form-control" %>
+</div>
+<div class="form-group">
+ 	<strong><%= f.label :image %></strong>
+ 		<br>
+ 		<%= f.file_field :image %>
+ 		<%= f.hidden_field :image_cache %>
+ 		<br>
+ 		<strong><%= label_tag "Enter Url of Image" %></strong>
+ 		<%= f.text_field :remote_image_url, class: "form-control" %>
+</div>

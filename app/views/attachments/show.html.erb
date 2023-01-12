@@ -1,0 +1,99 @@
+
+<div class="container">
+  <h1> Attachment Showing </h1>
+  <% if @attachment.amount < 1 %>
+    <div class="alert alert-warning"> Out of Stock now </div>
+  <% end %>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <% if @attachment.image %>
+        <div class="image-text">
+          <%= image_tag(@attachment.image.thumb.url, alt: 'Image') %>
+          <div class="centered">
+            <%= link_to "Show image" , @attachment.image.url, target: "_blank", class: "btn-image" %>
+          </div>
+          <div id="reaction-count">
+            <%= render 'reaction-count' %>
+          </div>
+        </div>
+      <% end %>
+      <hr>
+      <div class="row">
+      <% if user_signed_in? %>
+        <% if @attachment.already_liked(@attachment, current_user) %>
+          <div id="like-section" class="col-md-4 hidden">
+            <%= link_to 'like', like_attachment_path(@attachment, reaction: true, status: 'like'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+          <div id="dislike-section" class="col-md-4">
+            <%= link_to 'dislike', dislike_attachment_path(@attachment, reaction: true, status: 'dislike'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+        <% else %>
+          <div id="like-section" class="col-md-4">
+            <%= link_to 'like', like_attachment_path(@attachment, reaction: true, status: 'like'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+          <div id="dislike-section" class="col-md-4 hidden">
+            <%= link_to 'dislike', dislike_attachment_path(@attachment, reaction: true, status: 'dislike'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+        <% end %>
+      <% else %>
+          <div id="like-section" class="col-md-4">
+            <%= link_to 'like', like_attachment_path(@attachment, reaction: true, status: 'like'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+          <div id="dislike-section" class="col-md-4">
+            <%= link_to 'dislike', dislike_attachment_path(@attachment, reaction: true, status: 'dislike'), remote: true, method: 'post', class: 'btn btn-info' %>
+          </div>
+      <% end %>
+      </div>
+      <hr>
+      <div>
+        <%= link_to 'Show Image', @attachment.image.url, target: "_blank", class: 'btn btn-info' %>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div>
+        <strong>Title:</strong>
+        <%= @attachment.title %>
+      </div>
+      <div>
+        <strong>Description:</strong>
+        <%= @attachment.description %>
+      </div>
+      <div>
+        <strong>type:</strong>
+        <%= @attachment.image_type %>
+      </div>
+      <div>
+        <strong>place:</strong>
+        <%= @attachment.place %>
+      </div>
+      <div>
+        <strong>Created By:</strong>
+        <%= @attachment.created_by %>
+      </div>
+      <div>
+        <strong>price:</strong>
+        <%= @attachment.price %>
+      </div>
+      <div>
+        <% if user_signed_in? && current_user.id == @attachment.user_id %>
+        <strong>Amount:</strong>
+        <%= @attachment.amount %>
+        <% end %>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-1">
+          <%= link_to 'Back', url_for(:back), class: 'back-btn' %>
+        </div>
+        <div class="col-md-1" >
+          <% if @attachment.amount > 0 %>
+            <%= link_to 'Buy', new_order_path(attachment: @attachment.id), class: 'btn btn-info' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

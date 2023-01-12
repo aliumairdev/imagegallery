@@ -1,0 +1,49 @@
+<h1>Create Gallery</h1>
+<p><strong> User Name:</strong> <%= @user.username if @user.username? %> </p>
+<p> Total Attachments: <%= @user.attachments.count %> </p>
+ <p>
+	<% if current_user.attachments.any? %>
+    	<%= link_to "Show Gallery", gallery_path(current_user.attachments.ids), class: 'btn btn-info'%>
+    <% end %>
+</p>
+<hr>
+<div class="row">
+ 	<div class="col-md-6">
+		<h2> Your Attachments </h2>
+		<hr>
+		<div class="row text-center">
+			<div class="col-md-2">
+				<Strong> Title </Strong>
+			</div>
+			<div class="col-md-2">
+				<Strong> Amount </Strong>
+			</div>
+			<div class="col-md-3">
+				<Strong> Image </Strong>
+			</div>
+		</div>
+		<%= render @user.attachments %>
+	</div>
+	<div class="col-md-6">
+		<div class=" border border-dark p-4 nested-form">
+			<h2> Add New Attachments </h2>
+			<hr>
+			<%= nested_form_for @user do |f| %>
+				<%= f.fields_for :attachments, Attachment.new do |f| %>
+					<div>
+						<%= render "attachments/create_attachment", f: f %>
+						<hr>
+					</div>
+				<% end %>
+				<div>
+					<%= f.link_to_add "Add new Attachment", :attachments, class: "btn btn-info float-right" %>
+				</div>
+				<div>
+					<%= f.submit "Submit" , class: "btn btn-primary"%>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<hr>
+</div>
+

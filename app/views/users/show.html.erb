@@ -1,0 +1,15 @@
+<div class="container">
+	<h3>Profile</h3>
+	<p>
+		<strong> Email: </strong>
+		<%= @user.email if @user.email %>
+	</p>
+	<p>
+		<strong> User Name: </strong>
+		<%= @user.username %>
+	</p>
+	<div>
+		<%= link_to 'Back', url_for(:back), class: 'back-btn' %>
+		<%= link_to 'edit profile', edit_user_registration_path, class: "btn btn-info" %>
+	</div>
+</div>

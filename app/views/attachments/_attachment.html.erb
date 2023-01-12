@@ -1,0 +1,11 @@
+<div class="row mb-1 align-items-center text-center">
+<div class="col-md-2"><%= attachment.title %></div>
+<div class="col-md-2"> <%= attachment.amount %></div>
+<div class="col-md-3"><%= image_tag attachment.image.small_thumb.url if attachment.image? %></div>
+<div class="col-md-5">
+    <%= link_to 'Show', attachment, class: 'btn btn-success' %>
+    <%= link_to 'Edit', edit_attachment_path(attachment), class: 'btn btn-info' %> 
+	<%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>
+</div>
+

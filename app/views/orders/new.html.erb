@@ -1,0 +1,38 @@
+<div class="container">
+	<h1 class="text-center"> Order form </h1>
+	<hr>
+	<div class="row">
+		<% if @attachment.amount > 0 %>
+			<div class="col-md-3">
+				<%= link_to (image_tag @attachment.image.thumb.url), @attachment.image.url %>
+			</div>
+			<div class="col-md-9">
+				<%= form_for :orders, url: '/orders/confirm_order' do |f| %>
+					<div class="form-group">
+						<%= f.label "Name"%>
+						<%= f.text_field :name, class: "form-control" %>
+					</div>
+					<div class="form-group">
+						<%= f.label :amount, "Enter Quantity"%>
+						<%= f.text_field :amount, class: "form-control" %>
+					</div>
+					<div class="form-group">
+						<%= f.submit "create order", class: "btn btn-primary" %>
+					</div>
+					<div>
+						<%= link_to "confirm order", orders_confirm_order_path, class: "btn btn-primary" %>
+					</div>
+					<div>
+						<%= hidden_field_tag "attachment_amount", @attachment.amount %>
+						<%= hidden_field_tag "attachment_id", @attachment.id %>
+					</div>
+				<% end %>
+			</div>	
+		<% else %>
+			<div class="alert alert-warning"> sorry, out of stock, come back later </div>
+		<% end %>
+	</div>
+	<div>
+		<%= link_to 'back', url_for(:back), class: "back-btn" %>
+	</div>
+</div>
